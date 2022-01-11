@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "stepsword.potionidpacketfixer.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "potionidpacketfixer.refmap.json",
+  "mixins": [
+    "MixinSPlayEntityEffectPacket",
+    "MixinClientPlayNetHandler"
+  ],
+  "minVersion": "0.8.3"
+}
