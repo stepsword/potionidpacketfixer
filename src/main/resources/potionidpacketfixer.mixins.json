@@ -5,7 +5,8 @@
   "refmap": "potionidpacketfixer.refmap.json",
   "mixins": [
     "MixinSPlayEntityEffectPacket",
-    "MixinClientPlayNetHandler"
+    "MixinClientPlayNetHandler",
+    "MixinSRemoveEntityEffectPacket"
   ],
   "minVersion": "0.8.3"
 }
