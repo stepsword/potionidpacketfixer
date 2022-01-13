@@ -5,6 +5,7 @@
   "refmap": "potionidpacketfixer.refmap.json",
   "mixins": [
     "MixinClientboundUpdateMobEffectPacket",
+    "MixinClientboundRemoveMobEffectPacket",
     "MixinClientPacketListener"
   ],
   "minVersion": "0.8.3"

@@ -1,6 +1,7 @@
 package stepsword.potionidpacketfixer.mixin;
 
 import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.world.effect.MobEffect;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,6 +25,21 @@ public class MixinClientPacketListener {
             return MobEffect.byId(((ClientboundUpdateMobEffectPacketGetter) packet).getIntEffectId());
         else
             return MobEffect.byId(z);
+    }
+    @Redirect(
+        // the method this function is called in
+        method = "handleRemoveMobEffect(Lnet/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket;)V",
+        // target the invocation of System.out.println
+        at = @At(
+                value = "INVOKE",
+                target = "Lnet/minecraft/network/protocol/game/ClientboundRemoveMobEffectPacket;getEffect()Lnet/minecraft/world/effect/MobEffect;"
+        )
+    )
+    private MobEffect getEffectToRemove(ClientboundRemoveMobEffectPacket packet) {
+        if (packet instanceof ClientboundUpdateMobEffectPacketGetter)
+            return MobEffect.byId(((ClientboundUpdateMobEffectPacketGetter) packet).getIntEffectId());
+        else
+            return packet.getEffect();
     }
 
 }

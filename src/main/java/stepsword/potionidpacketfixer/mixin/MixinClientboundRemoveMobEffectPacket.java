@@ -1,6 +1,7 @@
 package stepsword.potionidpacketfixer.mixin;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -14,13 +15,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import stepsword.potionidpacketfixer.interfaces.ClientboundUpdateMobEffectPacketGetter;
 
 @Debug(export=true)
-@Mixin(ClientboundUpdateMobEffectPacket.class)
-public class MixinClientboundUpdateMobEffectPacket implements ClientboundUpdateMobEffectPacketGetter {
+@Mixin(ClientboundRemoveMobEffectPacket.class)
+public class MixinClientboundRemoveMobEffectPacket implements ClientboundUpdateMobEffectPacketGetter {
     int intEffectID;
 
-    @Inject(method="<init>(ILnet/minecraft/potion/MobEffectInstance;)V", at = @At("TAIL"))
-    public void constructorTail(int p_i46891_1_, MobEffectInstance p_i46891_2_, CallbackInfo info) {
-        intEffectID = MobEffect.getId(p_i46891_2_.getEffect());
+    @Inject(method="<init>(ILnet/minecraft/potion/MobEffect;)V", at = @At("TAIL"))
+    public void constructorTail(int p_i46891_1_, MobEffect p_i46891_2_, CallbackInfo info) {
+        intEffectID = MobEffect.getId(p_i46891_2_);
     }
 
     @Inject(method="write(Lnet/minecraft/network/FriendlyByteBuf;)V", at = @At("TAIL"))
