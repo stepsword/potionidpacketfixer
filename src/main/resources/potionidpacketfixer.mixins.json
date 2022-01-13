@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "potionidpacketfixer.refmap.json",
   "mixins": [
+    "MixinClientboundRemoveMobEffectPacket",
     "MixinClientboundUpdateMobEffectPacket",
     "MixinClientPacketListener"
   ],
