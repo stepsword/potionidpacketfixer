@@ -4,8 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "potionidpacketfixer.refmap.json",
   "mixins": [
-    "MixinSPlayEntityEffectPacket",
-    "MixinClientPlayNetHandler"
+    "MixinClientboundUpdateMobEffectPacket",
+    "MixinClientPacketListener"
   ],
   "minVersion": "0.8.3"
 }
